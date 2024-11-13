@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    container_name: sistema-logistica-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_DATABASE=logistica
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8
+    container_name: sistema-logistica-db
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes" 
+      MYSQL_DATABASE: logistica
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

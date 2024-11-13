@@ -2,35 +2,51 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Sistema de Logística Básico con Cálculo de Tarifas
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este proyecto es un microservicio desarrollado con **NestJS** y **TypeScript** para gestionar envíos y calcular tarifas basadas en la distancia desde un punto de distribución.
 
-## Description
+## Requisitos
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Docker** instalado.
+- **Node.js** si no se usa Docker.
 
-## Project setup
+## Instrucciones para Probar el Proyecto
 
-```bash
-$ npm install
-```
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/julianasantosss/sistema-logistica-docker.git
+
+2. **Construir y ejecutar el contenedor Docker:**
+   ```bash
+   docker-compose up --build
+
+3. **Acceder a la aplicación:**
+   ```bash
+   [docker-compose up --build](http://localhost:3000)
+
+## Probar los Endpoints
+
+### Registrar un nuevo envío (POST /envios):
+
+Envía una solicitud POST con los datos del nuevo envío:
+
+    ```bash
+    curl -X POST http://localhost:3000/envios -H "Content-Type: application/json" -d '{
+        "destinatario": "Julia",
+        "remitente": "Martin",
+        "contenido": "Bolsas",
+        "distancia": 100
+    }'
+    
+### Listar todos los envíos (GET /envios):
+
+Envía una solicitud GET para obtener la lista de todos los envíos registrados:
+
+    ```bash
+    curl http://localhost:3000/envios
+
+
 
 ## Compile and run the project
 
